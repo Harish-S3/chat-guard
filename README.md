@@ -1,90 +1,134 @@
-ChatGuard: AI-Powered Scam Detection Chatbot
-![alt text](./chatguard-demo.gif)
+# 🤖 ChatGuard: AI-Powered Scam Detection Chatbot
 
-(Optional: It's highly recommended to create a short GIF like this to showcase your project in action!)
-ChatGuard is a proof-of-concept project that demonstrates how to build a real-time, AI-powered scam detection system within a chatbot interface. The system analyzes user messages to identify patterns of phishing, fraud, and spam, and issues an immediate alert.
-This project was built using Python, Scikit-learn, and Streamlit, showcasing a complete workflow from data processing and model training to an interactive web application.
-🚀 Features
-AI Scam Detection Engine: A core module that uses a machine learning model to classify messages as "scam" or "legitimate."
-Real-Time Analysis: Every message sent to the chatbot is instantly analyzed for potential risks.
-Interactive Chat Interface: A user-friendly web interface built with Streamlit that simulates a real chat application.
-Clear Risk Alerts: When a potential scam is detected, a prominent warning is displayed with the model's confidence score.
-Modular Codebase: The project is separated into logical parts: model training (train_model.py), the detection engine (chatguard.py), and the front-end (app_streamlit.py).
-🛠️ Tech Stack
-Backend & ML: Python, Scikit-learn, Pandas, Joblib
-Frontend: Streamlit
-Dataset: SMS Spam Collection Dataset from Kaggle
-🔧 Getting Started
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
-Prerequisites
-Python 3.8 or higher
-pip (Python package installer)
-Installation & Setup
-Clone the Repository
-code
-Bash
+![ChatGuard Demo](./chatguard-demo.gif)
+
+> ⚡ *Real-time AI-powered scam detection system integrated within a chatbot interface.*
+
+---
+
+## 📌 Overview
+
+**ChatGuard** is a proof-of-concept project that demonstrates how to build a **real-time scam detection system** inside a chatbot interface.  
+It leverages **Machine Learning (Scikit-learn)** to classify messages as **"Scam"** or **"Legitimate"** and alerts the user instantly.
+
+The project covers the **complete workflow**:  
+✔️ Data processing  
+✔️ Model training  
+✔️ Real-time prediction  
+✔️ Interactive chatbot application with **Streamlit**
+
+---
+
+## 🚀 Features
+
+- **AI Scam Detection Engine** – Uses an ML pipeline (TF-IDF + Logistic Regression) to classify messages.  
+- **Real-Time Analysis** – Every user message is analyzed instantly for potential risks.  
+- **Interactive Chat Interface** – Built with Streamlit, simulating a real chat app.  
+- **Clear Risk Alerts** – Displays scam warnings with confidence scores.  
+- **Modular Codebase** – Separated into logical parts:  
+  - `train_model.py` → Model training  
+  - `chatguard.py` → Core detection engine  
+  - `app_streamlit.py` → Frontend app  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend & ML**: Python, Scikit-learn, Pandas, Joblib  
+- **Frontend**: Streamlit  
+- **Dataset**: [SMS Spam Collection Dataset (Kaggle)](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)  
+
+---
+
+## 🔧 Getting Started
+
+Follow these steps to run ChatGuard locally:
+
+### ✅ Prerequisites
+- Python 3.8+  
+- `pip` (Python package installer)
+
+### 📥 Installation & Setup
+
+```bash
+# Clone the repository
 git clone https://github.com/your-username/ChatGuard.git
 cd ChatGuard
-Create and Activate a Virtual Environment
-This keeps your project dependencies isolated.
-code
-Bash
-# For Windows
+
+# Create a virtual environment
+# Windows
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# For macOS/Linux
+# macOS/Linux
 python3 -m venv .venv
 source .venv/bin/activate
-Install Dependencies
-A requirements.txt file is included for easy installation.
-code
-Bash
+
+# Install dependencies
 pip install -r requirements.txt
-Download the Dataset
-Go to the SMS Spam Collection Dataset on Kaggle.
-Download the spam.csv file.
-Place the spam.csv file in the root directory of the project.
-Running the Project
-The project is run in two stages: training the model and then launching the application.
-Train the AI Model
-This script will process the spam.csv data, train the LogisticRegression model, and save it as chatguard_model.pkl. You only need to run this once.
-code
-Bash
+📊 Dataset
+Download the SMS Spam Collection Dataset.
+
+Place the spam.csv file in the project root.
+
+▶️ Running the Project
+1️⃣ Train the Model
+bash
+Copy code
 python train_model.py
-You should see a classification report in the terminal and a confirmation that the model was saved.
-Launch the Streamlit Web App
-This command starts the web server and opens the application in your browser.
-code
-Bash
+Processes spam.csv
+
+Trains Logistic Regression model
+
+Saves as chatguard_model.pkl
+
+You’ll also see a classification report in the terminal.
+
+2️⃣ Launch the Web App
+bash
+Copy code
 streamlit run app_streamlit.py
-Your default web browser will open a new tab with the ChatGuard interface ready to use!
+Opens the Streamlit chatbot interface in your default browser.
+
+Messages typed are analyzed in real-time.
+
 🤖 How It Works
-The project's intelligence comes from a machine learning pipeline created with Scikit-learn.
-Text Vectorization (TfidfVectorizer): The model can't understand raw text. TF-IDF (Term Frequency-Inverse Document Frequency) converts text messages into numerical vectors, giving more weight to words that are important for distinguishing between scam and legitimate messages. We use ngram_range=(1, 2) to consider both single words and two-word phrases (e.g., "click here").
-Classification (LogisticRegression): This algorithm is trained on the vectorized data to find the patterns that separate the two classes. We use the class_weight='balanced' parameter to combat the class imbalance in the dataset, forcing the model to pay more attention to the less frequent but more important "scam" examples.
-Real-Time Prediction: When a user types a message in the Streamlit app, the saved pipeline processes the new text and predicts the probability of it being a scam. If the probability exceeds a set threshold (e.g., 50%), an alert is triggered.
+Text Vectorization (TF-IDF) – Converts text messages into numerical vectors. Uses ngram_range=(1, 2) to capture both words and phrases.
+
+Classification (Logistic Regression) – Learns patterns of scam vs. legitimate messages. class_weight='balanced' ensures scam detection isn’t ignored due to class imbalance.
+
+Prediction – Every new message is processed by the saved pipeline. If scam probability > threshold (50%), a warning alert is triggered.
+
 📂 Project Structure
-code
-Code
+bash
+Copy code
 ChatGuard/
 │
-├── .venv/                  # Virtual environment folder
-├── spam.csv                # The dataset (needs to be downloaded)
-├── chatguard_model.pkl     # The trained AI model (generated by train_model.py)
+├── spam.csv               # Dataset (to be downloaded)
+├── chatguard_model.pkl    # Trained AI model (auto-generated)
 │
-├── train_model.py          # Script to train and save the AI model
-├── chatguard.py            # The core scam detection engine class
-├── app_streamlit.py        # The Streamlit front-end application
+├── train_model.py         # Model training script
+├── chatguard.py           # Scam detection engine
+├── app_streamlit.py       # Streamlit frontend
 │
-├── requirements.txt        # List of Python dependencies for pip
-└── README.md               # This file
+├── requirements.txt       # Project dependencies
+└── README.md              # Project documentation
 📈 Future Improvements
-This project serves as a strong foundation. Here are some ways it could be enhanced:
-Use Advanced Models: Implement more powerful NLP models like BERT or other transformers for higher accuracy.
-Expand the Dataset: Train on a larger, more diverse dataset that includes email phishing, social media scams, etc.
-URL Analysis: Add functionality to specifically analyze links in messages for signs of phishing.
-Containerization: Dockerize the application for easier deployment.
-More Sophisticated Chatbot: Replace the simple rule-based bot with a more advanced conversational AI framework like Rasa or Dialogflow.
-License
+🔹 Use transformer-based models (BERT, DistilBERT) for better accuracy.
+
+🔹 Train on larger datasets including email phishing & social media scams.
+
+🔹 Add URL analysis to detect suspicious links.
+
+🔹 Containerize with Docker for easy deployment.
+
+🔹 Upgrade chatbot to Rasa / Dialogflow for smarter interactions.
+
+📜 License
 This project is open-source and available under the MIT License.
+
+🙌 Acknowledgments
+Dataset: SMS Spam Collection Dataset
+
+Tools: Python, Scikit-learn, Streamlit
+
