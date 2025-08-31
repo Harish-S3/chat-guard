@@ -1,0 +1,6 @@
+# Core Machine Learning & Data Handling
+pandas
+scikit-learn
+
+# Web Application Interface
+streamlit
