@@ -1,6 +1,6 @@
 # Core Machine Learning & Data Handling
 pandas
 scikit-learn
-
+joblib
 # Web Application Interface
 streamlit
